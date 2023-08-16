@@ -1,0 +1,23 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.7.2/socket.io.js"
+        integrity="sha512-zoJXRvW2gC8Z0Xo3lBbao5+AS3g6YWr5ztKqaicua11xHo+AvE1b0lT9ODgrHTmNUxeCw0Ry4BGRYZfXu70weg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script>
+    //connect to the http server
+    const socket = io();
+
+    // console.log('socket before connection', socket);
+
+    //general connection to the websocket server
+    socket.on('connect', () => {
+        console.log('socket after connection', socket);
+        //connect to the welcome event and receive message from the server
+        socket.on('welcome', (message) => {
+            console.log('message', message);
+        });
+
+        //send some data to the server with specific event
+        socket.emit('message', {data: 'I`m excited to connect from the frontend to the backend!'} )
+    })
+</script>
+
